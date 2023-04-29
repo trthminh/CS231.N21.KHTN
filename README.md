@@ -7,7 +7,7 @@ Nhập môn Thị giác máy tính - Introduction to Computer Vision
 </p>
 
 |**Student ID**| **Member**|**Email**|
-|-----------|-----------|-----------|-----------|
+|-----------|-----------|-----------|
 |21520064|Truong Thanh Minh|21520064@gm.uit.edu.vn|
 
 ## Course information:
