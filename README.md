@@ -5,6 +5,7 @@ Nhập môn Thị giác máy tính - Introduction to Computer Vision
     <img src="https://i.imgur.com/WmMnSRt.png" alt="Trường Đại học Công nghệ Thông tin | University of Information Technology">
   </a>
 </p>
+
 ## Single Object Tracking
 This is our final project for CS231 - Introduction to Computer Vision course
 
@@ -13,6 +14,7 @@ This is our final project for CS231 - Introduction to Computer Vision course
 * Additionally, the project allows for video demos on any selected video from the computer.
 * Some demo results on the OTB2015 dataset can be viewed [slide](https://github.com/trthminh/CS231.N21.KHTN/blob/main/21520064_Single%20Object%20Tracking%20Report.pptx)
 
+## Member
 |**Student ID**| **Member**|**Email**|
 |-----------|-----------|-----------|
 |21520064|Truong Thanh Minh|21520064@gm.uit.edu.vn|
