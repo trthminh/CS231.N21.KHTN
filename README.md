@@ -26,7 +26,46 @@ This is our final project for CS231 - Introduction to Computer Vision course
 - **Year**: 2022 - 2023
 - **Teacher**: Ph.D Mai Tien Dung
 
-## This repository:
+## Code
 
+### Prerequisites
+
+1. Clone the repo
+    ```
+   git clone https://github.com/trthminh/CS231.N21.KHTN.git
+    ```
+2. Download the dataset [here](https://drive.google.com/file/d/1FQ5zReW3SAbK5ABvhDrZqhqvT004ujJD/view?usp=drive_link/)
+3. Install the python dependency packages.
+    ```
+    pip install -r requirements.txt
+    ```
+
+### Usage
+Terminal command:
+  If you want to run on video in OTB2015:
+  ```
+  python visualize_result_otb2015.py -name_video [name] -type_tracker [tracker]
+  ```
+
+  If you want to run on the video you upload from your computer:
+  ```
+  python visualize_result_outvid.py -name_video [name] -type_tracker [tracker]
+  ```
+
+  Where, `name` is name of the video, `tracker` is type of the tracker in OpenCV. For example, you can run 
+  ```
+  python visualize_result_outvid.py -name_video mot.mp4 -type_tracker KCF
+  ```
+
+  Additional:
+
+  If you want to create a video from a list of images, you can run:
+  python create_videos_from_images.py -folder_images [folder]
+
+  Where folder is placed contain your images. For example, you can run: 
+  ```
+python create_videos_from_images.py -folder_images img1
+```
+  
 ## Contact:
 If you have any questions, feel free to open issues or contact us at the email address above.
