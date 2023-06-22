@@ -1,7 +1,11 @@
 import cv2
 import os
 import pandas as pd
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-type_tracker", choices=['MIL', 'MedianFlow', 'TLD', 'KCF', 'MOSSE', 'CSRT'], required=True)
+args = parser.parse_args()
 def calculate_IOU(bboxPredict, bboxTruth):
     intersect = find_Intersect(bboxPredict, bboxTruth)
     areaIntersect = area(intersect)
@@ -52,7 +56,18 @@ for data in os.listdir(path_dataset):
         gts.append((x, y, w, h))
     print(data, len(gts), len(images))
     first_frame_video = cv2.imread(os.path.join(folder_img, images[0]))
-    tracker = cv2.legacy.TrackerKCF_create()
+    if args.type_tracker == 'CSRT':
+        tracker = cv2.legacy.TrackerCSRT_create()
+    if args.type_tracker == 'MIL':
+        tracker = cv2.legacy.TrackerMIL_create()
+    if args.type_tracker == 'MedianFlow':
+        tracker = cv2.legacy.TrackerMedianFlow_create()
+    if args.type_tracker == 'TLD':
+        tracker = cv2.legacy.TrackerTLD_create()
+    if args.type_tracker == 'KCF':
+        tracker = cv2.legacy.TrackerKCF_create()
+    if args.type_tracker == 'MOSSE':
+        tracker = cv2.legacy.TrackerMOSSE_create()
     tracker.init(first_frame_video, gts[0])
     cv2.rectangle(first_frame_video, (gts[0][0], gts[0][1]), (gts[0][0] + gts[0][2], gts[0][1] + gts[0][3]), (255, 0, 0), 2)
     cv2.imshow("Hihi", first_frame_video)
@@ -97,5 +112,5 @@ for data in os.listdir(path_dataset):
     cv2.destroyAllWindows()
 df = pd.DataFrame(ans)
 df.columns = ["Name of video", "IoU score"]
-df.to_csv("Result_KCF.csv")
+df.to_csv(f"Result{args.type_tracker}.csv")
 print("Total IOU score:", sum(iouScore) / len(iouScore))

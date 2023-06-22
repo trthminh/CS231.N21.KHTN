@@ -1,13 +1,19 @@
 import cv2
 import os
 import pandas as pd
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-name_video", help="enter your video name here", required=True, default='Human3')
+parser.add_argument("-type_tracker", choices=['MIL', 'MedianFlow', 'TLD', 'KCF', 'MOSSE', 'CSRT'], required=True)
+args = parser.parse_args()
+
 # Tên tệp video được lưu trữ
-name_video = "Human3"
-video_name = f"Demo{name_video}_CSRT.avi"
+video_name = f"Demo{args.name_video}_{args.type_tracker}.avi"
 # Khởi tạo đối tượng VideoWriter với các thông số của video đầu ra
 path_dataset = 'DatasetOTB2015/'
 frame_rate = 30
-path = f'{path_dataset}/{name_video}/img/0001.jpg'
+path = f'{path_dataset}/{args.name_video}/img/0001.jpg'
 img = cv2.imread(path)
 print(path)
 image_size = (img.shape[1], img.shape[0])
@@ -20,7 +26,7 @@ iouScore = []
 idx = 0
 ans = []
 
-data = name_video
+data = args.name_video
 folder_data = os.path.join(path_dataset, data)
 
 folder_img = os.path.join(folder_data, 'img')
@@ -39,7 +45,18 @@ for i in gt:
     gts.append((x, y, w, h))
 print(data, len(gts), len(images))
 first_frame_video = cv2.imread(os.path.join(folder_img, images[0]))
-tracker = cv2.legacy.TrackerCSRT_create()
+if args.type_tracker == 'CSRT':
+    tracker = cv2.legacy.TrackerCSRT_create()
+if args.type_tracker == 'MIL':
+    tracker = cv2.legacy.TrackerMIL_create()
+if args.type_tracker == 'MedianFlow':
+    tracker = cv2.legacy.TrackerMedianFlow_create()
+if args.type_tracker == 'TLD':
+    tracker = cv2.legacy.TrackerTLD_create()
+if args.type_tracker == 'KCF':
+    tracker = cv2.legacy.TrackerKCF_create()
+if args.type_tracker == 'MOSSE':
+    tracker = cv2.legacy.TrackerMOSSE_create()
 tracker.init(first_frame_video, gts[0])
 cv2.rectangle(first_frame_video, (gts[0][0], gts[0][1]), (gts[0][0] + gts[0][2], gts[0][1] + gts[0][3]), (255, 0, 0), 2)
 cv2.imshow("Hihi", first_frame_video)

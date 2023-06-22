@@ -1,13 +1,28 @@
 import cv2
+import argparse
 
-
-name_video = "mot"
-video_name = f"Demo{name_video}_CSRT.avi"
+parser = argparse.ArgumentParser()
+parser.add_argument("-name_video", help="enter your video name here", required=True, default='Human3')
+parser.add_argument("-type_tracker", choices=['MIL', 'MedianFlow', 'TLD', 'KCF', 'MOSSE', 'CSRT'], required=True)
+args = parser.parse_args()
+name_vid = args.name_video.split('.')[0]
+video_name = f"Demo{name_vid}_{args.type_tracker}.avi"
 
 # cap = cv2.VideoCapture(0)
-cap = cv2.VideoCapture('mot.mp4')
+cap = cv2.VideoCapture(args.name_video)
 
-tracker = cv2.legacy.TrackerCSRT_create()
+if args.type_tracker == 'CSRT':
+    tracker = cv2.legacy.TrackerCSRT_create()
+if args.type_tracker == 'MIL':
+    tracker = cv2.legacy.TrackerMIL_create()
+if args.type_tracker == 'MedianFlow':
+    tracker = cv2.legacy.TrackerMedianFlow_create()
+if args.type_tracker == 'TLD':
+    tracker = cv2.legacy.TrackerTLD_create()
+if args.type_tracker == 'KCF':
+    tracker = cv2.legacy.TrackerKCF_create()
+if args.type_tracker == 'MOSSE':
+    tracker = cv2.legacy.TrackerMOSSE_create()
 
 success, img = cap.read()
 bbox = cv2.selectROI("Tracking", img, False)
