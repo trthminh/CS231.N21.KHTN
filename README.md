@@ -56,6 +56,10 @@ Terminal command:
   ```
   python visualize_result_outvid.py -name_video mot.mp4 -type_tracker KCF
   ```
+or
+```
+python visualize_result_otb2015.py -name_video Human3 -type_tracker CSRT
+```
 
   Additional:
 
