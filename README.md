@@ -44,21 +44,21 @@ This is our final project for CS231 - Introduction to Computer Vision course
 Terminal command:
   If you want to run on video in OTB2015:
   ```
-  python visualize_result_otb2015.py -name_video [name] -type_tracker [tracker]
+  python single_object_tracking_otb2015.py -name_video [name] -type_tracker [tracker]
   ```
 
   If you want to run on the video you upload from your computer:
   ```
-  python visualize_result_outvid.py -name_video [name] -type_tracker [tracker]
+  python single_object_tracking_outvid.py -name_video [name] -type_tracker [tracker]
   ```
 
   Where, `name` is name of the video, `tracker` is type of the tracker in OpenCV. For example, you can run 
   ```
-  python visualize_result_outvid.py -name_video mot.mp4 -type_tracker KCF
+  python single_object_tracking_outvid.py -name_video mot.mp4 -type_tracker KCF
   ```
 or
 ```
-python visualize_result_otb2015.py -name_video Human3 -type_tracker CSRT
+python single_object_tracking_otb2015.py -name_video Human3 -type_tracker CSRT
 ```
 
   Additional:
